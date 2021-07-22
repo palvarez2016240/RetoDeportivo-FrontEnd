@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="display-3">ADMINISTRAR CATEGORIAS</h1>
+  <br>  <br>  <br>
+  <div class="row 2">
+
+</div>
+  <div class="row">
+    <div class="col-4" >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Equipos</h5>
+          <p class="card-text">Equipos</p>
+          <a href="#" class="btn btn-primary" href="/Equipos">Ir</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' )" >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Torneos</h5>
+          <p class="card-text">El adminitrador verá los torneos y el dueño de equipo</p>
+          <a href="#" class="btn btn-primary" href="/Torneos"  >Ir</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4"  >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Equipos por Categorias</h5>
+          <p class="card-text">Equipos por Categorias</p>
+          <a href="#" class="btn btn-primary" href=""  >Ir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

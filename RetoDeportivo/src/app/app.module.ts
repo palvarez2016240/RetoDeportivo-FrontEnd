@@ -13,6 +13,9 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './component/lista-usuarios/lista-usuarios.component';
+import { CategoriaComponent } from './component/categoria/categoria.component';
+import { EquiposComponent } from './component/equipos/equipos.component';
+import { TorneosComponent } from './component/torneos/torneos.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ListaUsuariosComponent } from './component/lista-usuarios/lista-usuario
     PerfilComponent,
     NavbarComponent,
     UsuarioAdminComponent,
-    ListaUsuariosComponent
+    ListaUsuariosComponent,
+    CategoriaComponent,
+    EquiposComponent,
+    TorneosComponent
   ],
   imports: [
     BrowserModule,

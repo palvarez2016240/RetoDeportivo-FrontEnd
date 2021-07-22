@@ -2,7 +2,7 @@
     <h1 class="display-3">MENU INICIO</h1>
     <br>  <br>  <br>
     <div class="row 2">
-  
+
   </div>
     <div class="row">
       <div class="col-4">
@@ -10,11 +10,11 @@
           <div class="card-body">
             <h5 class="card-title">Categorias</h5>
             <p class="card-text">Categorias</p>
-            <a href="#" class="btn btn-primary" href="">Ir</a>
+            <a href="#" class="btn btn-primary" href="/Categorias">Ir</a>
           </div>
         </div>
       </div>
-  
+
       <div class="col-4"  *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' )">
         <div class="card">
           <div class="card-body">
@@ -25,6 +25,5 @@
         </div>
       </div>
     </div>
-  
+
   </div>
-  
