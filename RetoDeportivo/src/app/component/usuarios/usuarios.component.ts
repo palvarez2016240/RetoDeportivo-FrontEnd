@@ -21,6 +21,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todosUsuarios();
   }
 
   editarUser(id) {
@@ -60,6 +61,15 @@ export class UsuariosComponent implements OnInit {
         });
       }
     );
+  }
+
+  todosUsuarios(){
+    this._usuarioService.obtenerUsuarios().subscribe(
+      response=>{
+        this.usuarios = response.Usuarios;
+        console.log(response);
+      }
+    )
   }
 
 }

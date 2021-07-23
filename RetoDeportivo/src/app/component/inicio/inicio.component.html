@@ -5,11 +5,12 @@
 
   </div>
     <div class="row">
-      <div class="col-4">
-        <div class="card">
+      <div class="col-xs-12 col-sm-4" *ngFor="let catego of categorias">
+        <div class="card mb-3">
+          <div class="card-header">
+            {{ catego.nombre }}
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Categorias</h5>
-            <p class="card-text">Categorias</p>
             <a href="#" class="btn btn-primary" href="/Categorias">Ir</a>
           </div>
         </div>

@@ -65,6 +65,11 @@ export class UsuarioService {
     return this._http.get(this.ruta + 'obtenerUsuarioId/' + id, {headers: headersToken})
   }
 
+  obtenerUsuarios():Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+    return this._http.get(this.ruta + '/todosUsuarios',{headers: headersToken})
+  }
+
 
 
 }
