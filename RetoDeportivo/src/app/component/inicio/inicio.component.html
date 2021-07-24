@@ -12,7 +12,7 @@
             {{ catego.nombre }}
           </div>
           <div class="card-body">
-            <a href="#" class="btn btn-primary" href="/Categorias">Ir</a>
+            <a class="btn btn-primary" [routerLink]="['/Categorias',catego._id]">Ir</a>
           </div>
         </div>
       </div>

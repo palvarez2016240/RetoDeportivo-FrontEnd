@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoriaService {
   public ruta: String;
+  public token
   public headersVariable = new HttpHeaders().set('Content-Type','application/json');
   constructor(public _http: HttpClient) {
     this.ruta = GLOBAL.url;
@@ -17,9 +18,20 @@ export class CategoriaService {
   obtenerCategoria(): Observable<any>{
     return this._http.get(this.ruta + "/todasCategorias",{headers: this.headersVariable})
   }
-  
+
   obtenerCategoriaId(id): Observable<any>{
-    return this._http.get(this.ruta+"/obtenerCategoriasId/"+id,{headers: this.headersVariable})
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+    return this._http.get(this.ruta+"/obtenerCategoriasId/"+id,{headers: headersToken})
+  }
+
+  obtenerToken(){
+    var token2 = localStorage.getItem('token');
+    if(token2 != 'undefined'){
+      this.token = token2;
+    }else{
+      this.token = null;
+    }
+    return this.token;
   }
 
 }
