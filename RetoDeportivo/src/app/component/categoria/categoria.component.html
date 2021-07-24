@@ -1,5 +1,6 @@
 <div class="container">
-  <h1 class="display-3">ADMINISTRAR CATEGORIAS</h1>
+  <h1 class="display-3">Aqui va el nombre de la categoria</h1>
+  <h6> En la ruta va ir el id de la categoria "localhost:4200/Categorias/IdDeLaCategoriaX"</h6>
   <br>  <br>  <br>
   <div class="row 2">
 
@@ -8,8 +9,8 @@
     <div class="col-4" >
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Equipos</h5>
-          <p class="card-text">Equipos</p>
+          <h5 class="card-title">Mi Equipo</h5>
+          <p class="card-text">El equipo que le pertenece o se unio</p>
           <a href="#" class="btn btn-primary" href="/Equipos">Ir</a>
         </div>
       </div>
@@ -18,8 +19,8 @@
     <div class="col-4" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' )" >
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Torneos</h5>
-          <p class="card-text">El adminitrador verá los torneos y el dueño de equipo</p>
+          <h5 class="card-title">Torneos de x categoria</h5>
+          <p class="card-text">El adminitrador verá los torneos y el dueño de equipo, torneos de x categoria</p>
           <a href="#" class="btn btn-primary" href="/Torneos"  >Ir</a>
         </div>
       </div>
@@ -28,8 +29,8 @@
     <div class="col-4"  >
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Equipos por Categorias</h5>
-          <p class="card-text">Equipos por Categorias</p>
+          <h5 class="card-title">Todos los equipos de x categoria</h5>
+          <p class="card-text">Todos los equipos Equipos de x categoria</p>
           <a href="#" class="btn btn-primary" href=""  >Ir</a>
         </div>
       </div>
