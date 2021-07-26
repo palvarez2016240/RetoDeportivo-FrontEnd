@@ -19,6 +19,7 @@ export class EquiposComponent implements OnInit {
   public equipoList
   public ModelEquipoID
   public usuariosST
+  public UsuarioID
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _equipoService: EquipoService,
@@ -89,6 +90,7 @@ export class EquiposComponent implements OnInit {
 
         console.log(response.EquipoActualizado)
         this.ObtenerTeam(this.idEquipo)
+        window.location.reload()
       },
       err =>{
 
@@ -111,6 +113,18 @@ export class EquiposComponent implements OnInit {
         console.table(response)
         this.obtenerUsuarios()
         this.ObtenerTeam(this.idEquipo)
+      }
+    )
+  }
+
+  obtenerUsuarioID(id){
+    this._usuarioService.obtenerUserID(id).subscribe(
+      response => {
+        this.equipoList = response.usuarioEncontrado
+        console.table(this.equipoList)
+
+      },err=>{
+
       }
     )
   }

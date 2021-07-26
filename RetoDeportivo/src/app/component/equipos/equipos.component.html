@@ -86,7 +86,7 @@
             <p class="member-para">{{equipoList.categoria.nombre}}</p>
             <div class="social">
               <a data-bs-toggle="modal"
-              data-bs-target="#Eliminar"
+              data-bs-target="#Eliminar" (click)="obtenerUsuarioID(tm._id)"
                 *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_COACH' && _usuarioService.obtenerIdentidad().equipos === equipoList._id"><i
                   class="bi bi-trash"></i></a>
             </div>
@@ -139,7 +139,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="EliminarMiembro(team._id)">Eliminar</button>
+        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="EliminarMiembro(equipoList._id)">Eliminar</button>
       </div>
     </div>
   </div>

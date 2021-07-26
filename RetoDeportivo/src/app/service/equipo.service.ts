@@ -47,9 +47,10 @@ export class EquipoService {
     return this._http.put(this.ruta + "AgregarMiembro/"+ id, params, {headers: headersToken})
   }
 
-  eliminarMiembro(id: string):Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
-    return this._http.put(this.ruta + "EliminarMiembro/" + id, {headers: headersToken})
+
+  eliminarMiembro(id:String):Observable<any>{
+
+    return this._http.put(this.ruta + "EliminarMiembro/"+ id, {headers: this.headersVariable})
   }
 
 
