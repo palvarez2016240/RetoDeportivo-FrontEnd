@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public _usuarioService: UsuarioService,
   ) {
-    this.identidad = this._usuarioService.obtenerIdentidad()
+   // this.identidad = this._usuarioService.obtenerIdentidad()
     this.url = GLOBAL.url
   }
 

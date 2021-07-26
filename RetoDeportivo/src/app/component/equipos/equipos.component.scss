@@ -1,98 +1,200 @@
-
-
-
-.card {
-  max-width: 350px;
-  margin: 50px auto;
+.team-bg {
+	background-color: #f8f9fa;
+	overflow: hidden;
+}
+.team .section-title {
+	padding-bottom: 40px;
+}
+.team .section-title .main-team-subheading {
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0;
+	line-height: 1px;
+	margin: 0 0 5px 0;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #aaaaaa;
+}
+.team .section-title .main-team-subheading::after {
+	content: "";
+	width: 120px;
+	height: 1px;
+	display: inline-block;
+	background: #556270;
+	margin: 4px 10px;
+}
+.team .main-team-heading {
+	margin: 0;
+	font-size: 36px;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #556270;
+}
+.team .member {
+	position: relative;
+	box-shadow: 0px 5px 15px rgba(85, 98, 112, 0.6);
+	padding: 30px;
+  margin-bottom: 30px;
+	border-radius: 4px;
+	background: #CEDEF3;
+}
+.team .member .pic {
+	overflow: hidden;
+	width: 140px;
+	border-radius: 4px;
+}
+.team .member .pic img {
+	transition: ease-in-out 0.3s;
+}
+.team .member:hover img {
+transform: scale(1.1);
+}
+.team .member .member-info {
+	padding-left: 30px;
+}
+.team .member .member-heading {
+	font-weight: 700;
+	margin-bottom: 5px;
+	font-size: 20px;
+	color: #556270;
+	line-height: 1.2;
+}
+.team .member span {
+	display: block;
+	font-size: 15px;
+	padding-bottom: 10px;
+	position: relative;
+	font-weight: 500;
+}
+.team .member span::after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 1px;
+	background: #556270;
+	bottom: 0;
+	left: 0;
+}
+.team .member .member-para {
+	margin: 10px 0 0 0;
+	font-size: 14px;
+}
+.team .member .social {
+	margin-top: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.team .member .social a {
+	transition: ease-in-out 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	width: 32px;
+	height: 32px;
+	background: #F6132A;
+}
+.team .member .social a + a {
+margin-left: 8px;
+}
+.team .member .social a:hover {
+	background: #6A040F;
+}
+.team .member .social a .team-icon {
+	color: #fff;
+	font-size: 16px;
+	margin: 0 2px;
 }
 
-/***** Efecto *****/
 
-.card-with-hover {
-  position: relative;
-  overflow: hidden;
-  background: #3085a3;
-  text-align: center;
-  height: 400px;
-}
-
-.card-with-hover > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-.card-with-hover:hover > img {
-  transform: scale(1.15) translate3d(0, -20px, 0);
-}
-
-.card-with-hover > .card-caption {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(23, 28, 47, 0.6);
-
-  transition: all 0.3s;
-  transform: translate3d(0, 100%, 0);
-  will-change: transform;
-}
-
-.card-with-hover > .card-caption > .card-caption-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: auto;
-  transition: all 0.3s;
-
-  transform: translate3d(0);
-  will-change: transform;
-}
-
-.card-with-hover > .card-caption h2 {
-  display: block;
+.iconDE{
   color: #fff;
-  margin: 0;
-  padding: 1.5rem;
-  transition: all 0.3s;
-  background-color: rgba(23, 28, 47, 0.4);
-
-  transform: translate3d(0, -100%, 0);
-  will-change: transform;
 }
 
-.card-with-hover > .card-caption p {
-  padding: 0 1rem;
-  margin: 0;
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.35s 0.1s;
-  transform: translate3d(0);
-  will-change: transform;
+
+.estadisticas{
+
+  margin-top: 50px;
+  margin-bottom: -35px;
 }
 
-.card-with-hover:hover > .card-caption {
-  transform: translateY(0);
+/*CSS PUNTOS-PJ-TORNEO*/
+
+@import url(https://fonts.googleapis.com/css?family=Oregano);
+
+.logo {
+	display: block;
+	position: relative;
+	width: 220px;
+	height: 220px;
+	margin: 0 auto;
+	padding: 0;
+	line-height: 1;
+  text-decoration: none;
 }
 
-.card-with-hover:hover > .card-caption > .card-caption-content {
-  top: 50%;
-  transform: translate(0, -50%);
+
+.logo-cristalab-core {
+	  width: 12.5em;
+    background: #2980b9;
+	  height: 12.4em;
+    border-radius: 8em;
+ 	-webkit-border-radius: 8em;
+    -moz-border-radius: 8em;
+    -ms-border-radius: 8em;
+    -o-border-radius: 8em;
+    border-width: 0.40em;
+    border-style: solid;
+    border-top-color: #95a5a6;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #95a5a6;
+    box-shadow: #95a5a6 0 0 0.50em, #95a5a6 0 -0.20em 0.20em, #95a5a6 0 -0 0.26em;
+		-webkit-transition: all 500ms ease;
+		-moz-transition: all 500ms ease;
+		-ms-transition: all 500ms ease;
+		-o-transition: all 500ms ease;
+		transition: all 500ms ease;
 }
 
-.card-with-hover:hover > .card-caption h2 {
-  background-color: rgba(255, 255, 255, 0);
-  transform: translateY(0%);
+
+.name-resumen-cl {
+	color: #fff;
+	font-size: 80px;
+  font-weight: bold;
+	font-family: "Oregano";
+  text-shadow: -0 0.0475em 0.0795em #34495e;
+	position: absolute;
+	left: 75px;
+	top: 0.65em;
 }
 
-.card-with-hover:hover > .card-caption p {
-  opacity: 1;
+
+.partidos {
+	color: #34495e;
+  font-family: "Oregano";
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-size: 17px;
+	position: relative;
+	top: 130px;
+  left: 42px;
+}
+
+.puntos {
+	color: #34495e;
+  font-family: "Oregano";
+	text-transform: uppercase;
+	letter-spacing: 10px;
+	font-size: 19px;
+	position: relative;
+	top: 130px;
+  left: 33px;
+}
+
+.functionsBtn{
+  padding:15px;
+  margin-left:15px
 }

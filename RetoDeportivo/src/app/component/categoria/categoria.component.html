@@ -1,20 +1,48 @@
-<div class="container">
-  <h1 class="display-3">Aqui va el nombre de la categoria</h1>
-  <h6> En la ruta va ir el id de la categoria "localhost:4200/Categorias/IdDeLaCategoriaX"</h6>
+<div class="container"  *ngIf="categoriaList">
+  <h1 class="display-3" >{{categoriaList.nombre}}</h1>
   <br>  <br>  <br>
   <div class="row 2">
 
-</div>
+  </div>
+
+  <div class="container contenedorBotones">
+    <div class="row  row-cols-auto">
+      <div class="col">
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+          data-bs-target="#AgregarEquipo" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_USER' ">Crear Equipo</button>
+      </div>
+
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-4" >
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Mi Equipo</h5>
-          <p class="card-text">El equipo que le pertenece o se unio</p>
-          <a href="#" class="btn btn-primary" href="/Equipos">Ir</a>
-        </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="center" *ngFor="let equip of equipoList" >
+        <!-- Markup efecto -->
+        <figure class="cardd card-with-hover">
+          <!-- Photo by Iga Palacz on Unsplash -->
+          <img src="/assets/img/equipos/sin_logo.png" alt="">
+          <figcaption class="card-caption">
+            <div class="card-caption-content" >
+              <h6 class="h" *ngIf="equip._id === _usuarioService.obtenerIdentidad().equipos">Mi equipo</h6>
+              <h2>{{equip.nombre}}</h2>
+
+              <a >{{equip.integrantes.nombres}}</a>
+              <br><br>
+              <button type="button" class="btn btn-outline-info" [routerLink]="['/Equipos',equip._id]">Ver más</button>
+
+            </div>
+
+          </figcaption>
+        </figure>
+        <!-- Markup efecto -->
       </div>
     </div>
+
+
+
 
     <div class="col-4" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' )" >
       <div class="card">
@@ -26,15 +54,31 @@
       </div>
     </div>
 
-    <div class="col-4"  >
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Todos los equipos de x categoria</h5>
-          <p class="card-text">Todos los equipos Equipos de x categoria</p>
-          <a href="#" class="btn btn-primary" href=""  >Ir</a>
-        </div>
+  </div>
+
+</div>
+
+
+<!-- Modal Agregar Equipo -->
+<div class="modal fade" id="AgregarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Equipo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="ModelEquipoID.nombre" >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="CrearEquipo()">Guardar</button>
       </div>
     </div>
   </div>
-
 </div>

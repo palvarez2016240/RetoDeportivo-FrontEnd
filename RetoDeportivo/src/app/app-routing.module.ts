@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'Perfil',component:PerfilComponent},
   {path: "Inicio",component:InicioComponent},
   {path: "Categorias/:idCategoria", component:CategoriaComponent},
-  {path: "Equipos", component:EquiposComponent},
+  {path: "Equipos/:idEquipo", component:EquiposComponent},
   {path: "Torneos", component:TorneosComponent},
   {path: "Usuarios", component:UsuariosComponent},
   {path:'**',component:LoginComponent},

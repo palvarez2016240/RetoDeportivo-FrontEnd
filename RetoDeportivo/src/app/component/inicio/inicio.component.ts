@@ -31,7 +31,7 @@ export class InicioComponent implements OnInit {
     this._categoriaService.obtenerCategoria().subscribe(
       response=>{
         this.categorias = response.categorias;
-        console.log(response);
+        console.table(response.categorias);
       }
     )
   }
