@@ -17,7 +17,8 @@
 
   <div class="row">
 
-
+    <h2 style="text-align: center;">Equipos</h2>
+    <hr>
     <div class="row row-cols-1 row-cols-md-3 g-3">
       <div class="center" *ngFor="let equip of equipoList" >
         <!-- Markup efecto -->
@@ -34,22 +35,32 @@
               <button type="button" class="btn btn-outline-info" [routerLink]="['/Equipos',equip._id]">Ver más</button>
 
             </div>
-
           </figcaption>
         </figure>
         <!-- Markup efecto -->
       </div>
     </div>
 
-
-
-
-    <div class="col-4" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' )" >
+    <!--Torneos-->
+    <!--Crear un torneo-->
+    <h2 style="text-align: center" class="tit">Torneos</h2>
+    <hr>
+    <div class="col-4" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' ">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Torneos de x categoria</h5>
-          <p class="card-text">El adminitrador verá los torneos y el dueño de equipo, torneos de x categoria</p>
-          <a href="#" class="btn btn-primary" href="/Torneos"  >Ir</a>
+          <h5 class="card-title">Crear un torneo</h5>
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"data-bs-target="#AgregarTorneo">CREAR</button>
+        </div>
+      </div>
+    </div>
+
+    <!--Mostrar Torneoss-->
+    <div class="col-4">
+      <div class="card" *ngFor="let torn of torneoList">
+        <div class="card-body">
+          <h5 class="card-title">{{torn.nombre}}</h5>
+          <a href="#" class="btn btn-primary" (click)='navegarTorneos(torn._id)' *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP')">GESTIONAR</a>
+          <a href="#" class="btn btn-primary" href="/Torneo" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH')">UNIRME</a>
         </div>
       </div>
     </div>
@@ -78,6 +89,30 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="CrearEquipo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal agregar torneo-->
+<div class="modal fade" id="AgregarTorneo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Torneo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="modelTorneo.nombre" >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="crearTorneo()">Guardar</button>
       </div>
     </div>
   </div>

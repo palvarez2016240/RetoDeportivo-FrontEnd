@@ -7,6 +7,8 @@ export class Equipo{
     public pj: Number,
     public torneosG:[{
       torneo: String,
+      /*nombreTorneo: String,
+      imagenTorneo: String*/
     }],
     public integrantes: [{
       usuario: String,

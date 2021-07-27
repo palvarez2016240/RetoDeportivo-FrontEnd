@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: "Inicio",component:InicioComponent},
   {path: "Categorias/:idCategoria", component:CategoriaComponent},
   {path: "Equipos/:idEquipo", component:EquiposComponent},
-  {path: "Torneos", component:TorneosComponent},
+  {path: "Torneo/:idTorneo", component:TorneosComponent},
   {path: "Usuarios", component:UsuariosComponent},
   {path:'**',component:LoginComponent},
 
