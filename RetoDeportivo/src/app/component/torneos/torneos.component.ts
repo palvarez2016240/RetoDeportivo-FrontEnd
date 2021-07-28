@@ -17,7 +17,9 @@ export class TorneosComponent implements OnInit {
   public modelTorneo;
   public idCategoria;
   public idTorneo;
-  public torneoList: Torneo;
+  public torneoList;
+  public equiposList;
+  public sinTorneo;
 
   constructor(
     public _activatedRoute: ActivatedRoute,
@@ -27,26 +29,29 @@ export class TorneosComponent implements OnInit {
 
   ) {
     this.identidad = this._usuarioService.obtenerIdentidad();
-    this.modelTorneo = new Torneo('', '', [{ idEquipo: '' }], '', '', '', '');
+    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }], false, false, '', '');
   }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((dataRoute) => {
       this.idTorneo = dataRoute.get('idTorneo')
     })
-    this.obtenerTorneoId(this.idTorneo)
+    this.obtenerTorneoId(this.idTorneo);
+    this.mostrarEquipos(this.idTorneo);
+    this.equiposSinTorneo(this.idTorneo)
   }
 
   obtenerTorneoId(idTorneo) {
     this._torneoService.obtenerTorneo(idTorneo).subscribe(
       response => {
+        this.modelTorneo = response.torneoEncontrado;
         this.torneoList = response.torneoEncontrado;
         console.log(response)
       }
     )
   }
 
-  editarTorneo(){
+  editarTorneo() {
     this._torneoService.editarTorneo(this.modelTorneo, this.idTorneo).subscribe(
       response => {
         console.log(response.torneoEditado);
@@ -57,21 +62,22 @@ export class TorneosComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        window.location.reload()
       }
     ),
-    error => {
-      console.log(<any>error);
-      Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: error.error.mensaje,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
+      error => {
+        console.log(<any>error);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
   }
 
-  eliminarTorneo(){
+  eliminarTorneo() {
     this._torneoService.eliminarTorneo(this.idTorneo).subscribe(
       response => {
         console.log(response);
@@ -86,6 +92,104 @@ export class TorneosComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+      }
+    )
+  }
+
+  mostrarEquipos(idTorneo) {
+    this._torneoService.equiposTorneo(idTorneo).subscribe(
+      response => {
+        this.equiposList = response.equiposEncontrado;
+        console.log(response)
+      }
+    )
+  }
+
+  equiposSinTorneo(idTorneo) {
+    this._torneoService.equiposSinTorneo(idTorneo).subscribe(
+      response => {
+        this.sinTorneo = response.equiposEncontrados;
+        console.log(response)
+      }
+    )
+  }
+
+  unirEquipo() {
+    this._torneoService.unirEquipos(this.modelTorneo, this.idTorneo).subscribe(
+      response => {
+        console.table(response)
+        this.equiposSinTorneo(this.idTorneo)
+        this.obtenerTorneoId(this.idTorneo)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Equipo Agregdo',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location.reload()
+      }
+    ),
+      error => {
+        console.log(<any>error)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+  }
+
+  iniciarTorneo() {
+    this._torneoService.iniciarTorneo(this.idTorneo).subscribe(
+      response => {
+        console.table(response)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Torneo Iniciado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location.reload()
+      },
+      error => {
+        console.log(<any>error)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
+  terminarTorneo() {
+    this._torneoService.terminarTorneo(this.idTorneo).subscribe(
+      response => {
+        console.table(response)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Torneo Terminado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location.reload();
+      },
+      error => {
+        console.log(<any>error)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     )
   }

@@ -158,17 +158,13 @@
 
         <form>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+            <label for="text" class="form-label">Usuario</label>
             <select  class="form-select form-select-sm" aria-label=".form-select-sm example" name="usuario" #usuario="ngModel"
             [(ngModel)]="ModelEquipoID.usuario">
-
               <option placeholder="usuario" *ngFor="let user of usuariosST "  value={{user._id}}  > {{ user.usuario}}  </option>
-
             </select>
-
             <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
           </div>
-
         </form>
 
       </div>

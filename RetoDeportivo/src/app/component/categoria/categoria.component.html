@@ -59,8 +59,8 @@
       <div class="card" *ngFor="let torn of torneoList">
         <div class="card-body">
           <h5 class="card-title">{{torn.nombre}}</h5>
-          <a href="#" class="btn btn-primary" (click)='navegarTorneos(torn._id)' *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP')">GESTIONAR</a>
-          <a href="#" class="btn btn-primary" href="/Torneo" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH')">UNIRME</a>
+          <button type="submit" class="bton4 btn btn-outline-info" (click)='navegarTorneos(torn._id)'>Ver</button>
+          <a href="#" class="btn btn-primary"S *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH')">UNIRME</a>
         </div>
       </div>
     </div>

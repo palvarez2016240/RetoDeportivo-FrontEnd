@@ -1,49 +1,192 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-    </div>
-    <div class="col">
-      <h2>{{torneoList.nombre}}</h2>
-    </div>
-    <div class="col">
-    </div>
-  </div>
-</div>
+<br>
 
 <div class="container">
   <div class="row">
     <div class="col">
     </div>
     <div class="col">
-
+      <h1>{{torneoList.nombre}}</h1>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditar">EDITAR</button>
-      <button type="button" class="btn btn-outline-danger" (click)="eliminarTorneo()">ELIMINAR</button>
     </div>
   </div>
 </div>
 
-<!--Modal editar Torneo-->
-<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Torneo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nombre</label>
-            <input type="text" class="form-control"
-            name="nombre" #nombres="ngModel" [(ngModel)]="modelTorneo.nombre">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="editarTorneo()">Guardar</button>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalTerminar"
+        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' &&
+        torneoList.terminado === false" (click)='terminarTorneo()'>Terminar Torneo</button>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+      <button type="submit" class="bton2 btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAgregar"
+        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Agregar
+        Equipos</button>
+
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalIniciar"
+        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Iniciar
+        Torneo</button>
+
+      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditar"
+        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Editar</button>
+
+      <button type="submit" class="bton2 btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar"
+        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Tabla de posiciones</h3>
+    </div>
+  </div>
+
+  <div id="wrapper">
+
+    <table id="keywords" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th><span>Keywords</span></th>
+          <th><span>Impressions</span></th>
+          <th><span>Clicks</span></th>
+          <th><span>CTR</span></th>
+          <th><span>Rank</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="lalign">silly tshirts</td>
+          <td>6,000</td>
+          <td>110</td>
+          <td>1.8%</td>
+          <td>22.2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>Equipos Integrados</h3>
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-6" *ngFor="let equiList of equiposList">
+      <div class="member d-flex align-items-start">
+        <div class="pic"><img src="/assets/img/equipos/sin_logo.png" alt="">
+        </div>
+        <div class="member-info">
+          <h2 class="member-name">{{equiList.nombre}}</h2>
+          <span class="member-role">Equipo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminar-->
+  <div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar torneo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estas seguro de eliminar el torneo? Se borraran todos los datos relacionados al torneo.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-danger" S data-bs-dismiss="modal" (click)='eliminarTorneo()'>Si,
+            eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Agregar-->
+  <div class="modal fade " id="ModalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Elegir Equipos</h5>
+        </div>
+        <div class="modal-body">
+
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nombre del equipo</label>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="equipoId"
+                #equipoId="ngModel" [(ngModel)]="modelTorneo.equipoId">
+                <option placeholder="equipoId" *ngFor="let sin of sinTorneo " value={{sin._id}}> {{ sin.nombre}}
+                </option>
+              </select>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="unirEquipo()">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminar-->
+  <div class="modal fade" id="ModalIniciar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Al iniciar el torneo ningun equipo se podra unir, ya no se podra editar ni eliminar este torneo.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
+            (click)='iniciarTorneo()'>Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal editar Torneo-->
+  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Torneo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nombre</label>
+              <input type="text" class="form-control" name="nombre" #nombres="ngModel" [(ngModel)]="modelTorneo.nombre">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="editarTorneo()">Guardar</button>
+        </div>
+      </div>
+    </div>

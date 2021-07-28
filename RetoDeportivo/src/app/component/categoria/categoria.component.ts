@@ -38,7 +38,7 @@ export class CategoriaComponent implements OnInit {
     public _EquipoService: EquipoService,
   ) {
     this.ModelEquipoID = new Equipo('', '', '', 0, 0, [{ torneo: '' }], [{ usuario: '' }], '')
-    this.modelTorneo = new Torneo('', '', [{ idEquipo: '' }], '', '', '', '');
+    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }],  false, false, '', '');
     this.identidad = this._usuarioService.obtenerIdentidad()
     this.url = GLOBAL.url
     this.usuarioModel = new Usuario('', '', '', '', 0, '', '', '', '');
@@ -158,7 +158,6 @@ export class CategoriaComponent implements OnInit {
       }
     )
   }
-
 
   navegarTorneos(idTorneo){
     this._router.navigate(['Torneo', idTorneo])

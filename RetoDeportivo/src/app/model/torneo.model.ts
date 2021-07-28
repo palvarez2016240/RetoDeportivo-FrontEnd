@@ -3,10 +3,10 @@ export class Torneo{
     public _id: String,
     public nombre: String,
     public equipos:[{
-      idEquipo: String,
+      equipoId: String,
     }],
-    public iniciado: String,
-    public terminado: String,
+    public iniciado: Boolean,
+    public terminado: Boolean,
     public imagen: String,
     public idCategoria: String
   ){}
