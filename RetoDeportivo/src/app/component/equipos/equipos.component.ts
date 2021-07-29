@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Equipo } from 'src/app/model/equipo.model';
 import { EquipoService } from 'src/app/service/equipo.service';
+import { GLOBAL } from 'src/app/service/global.service';
+import { SubirimagenService } from 'src/app/service/subirimagen.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -20,13 +22,18 @@ export class EquiposComponent implements OnInit {
   public ModelEquipoID
   public usuariosST
   public UsuarioID
+  public url;
+  public token;
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _equipoService: EquipoService,
     public _usuarioService:UsuarioService,
+    public _subirService:SubirimagenService
   ) {
     this.identidad = this._usuarioService.obtenerIdentidad()
     this.ModelEquipoID = new Equipo('','','',0,0,[{torneo:''}],[{usuario:''}],'')
+    this.token = _usuarioService.obtenerToken()
+    this.url = GLOBAL.url
   }
 
   ngOnInit(): void {
@@ -127,6 +134,47 @@ export class EquiposComponent implements OnInit {
 
       }
     )
+  }
+
+  unirmeAEquipo() {
+    this._equipoService.unirAEquipo(this.ModelEquipoID ,this.idEquipo, this._usuarioService.obtenerIdentidad()._id,).subscribe(
+      response => {
+        console.table(response);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Bienvenido al Equipo',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+      },
+      error => {
+        console.log(<any>error)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
+  subirImagen(){
+    this._subirService.subirImagen(this.url + 'subirImagen', [], this.imagenASubir, this.token,
+    'imagen').then((resultado: any) => {
+      console.log(resultado);
+      this.identidad.imagen = resultado.usuarioEncontrado.imagen;
+      localStorage.setItem('identidad', JSON.stringify(this.identidad) );
+    })
+
+  }
+
+  public imagenASubir: Array<File>;
+  inputEvento(fileInput:any){
+    this.imagenASubir = <Array<File>>fileInput.target.files;
   }
 
 }

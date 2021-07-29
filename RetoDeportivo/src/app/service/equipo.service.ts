@@ -64,6 +64,12 @@ export class EquipoService {
     return this._http.get(this.ruta + 'obtenerUsuario',{headers: this.headersVariable})
   }
 
+  unirAEquipo(equipo: Equipo, id: String, idUsuario: String): Observable<any> {
+    let params = JSON.stringify(equipo);
+    return this._http.put(this.ruta + "unirAEquipo/" + id +'/'+ idUsuario, params,  { headers: this.headersVariable })
+  }
+
+
   obtenerToken(){
     var token2 = localStorage.getItem('token');
     if(token2 != 'undefined'){

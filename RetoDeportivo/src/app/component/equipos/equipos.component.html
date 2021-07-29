@@ -68,7 +68,14 @@
         </div>
       </div>
 
+      <div class="container" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USER' && _usuarioService.obtenerIdentidad().equipos === null">
+        <div class="row row-cols-auto">
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark" (click)="unirmeAEquipo()" >Unirme</button>
+          </div>
 
+        </div>
+      </div>
 
 
 
