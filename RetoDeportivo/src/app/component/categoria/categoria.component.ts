@@ -132,7 +132,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   unirMiEquipo(idTorneo) {
-    this._torneoService.unirMiEquipo(this.modelTorneo ,idTorneo, this._usuarioService.obtenerIdentidad()._id,).subscribe(
+    this._torneoService.unirMiEquipo(this.modelTorneo, idTorneo, this._usuarioService.obtenerIdentidad()._id,).subscribe(
       response => {
         console.table(response);
         Swal.fire({
@@ -142,7 +142,7 @@ export class CategoriaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-
+        this.navegarTorneos(idTorneo);
       },
       error => {
         console.log(<any>error)
