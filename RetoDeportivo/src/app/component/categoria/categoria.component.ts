@@ -38,7 +38,7 @@ export class CategoriaComponent implements OnInit {
     public _EquipoService: EquipoService,
   ) {
     this.ModelEquipoID = new Equipo('', '', '', 0, 0, [{ torneo: '' }], [{ usuario: '' }], '')
-    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }],  false, false, '', '');
+    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }], false, false, '', '');
     this.identidad = this._usuarioService.obtenerIdentidad()
     this.url = GLOBAL.url
     this.usuarioModel = new Usuario('', '', '', '', 0, '', '', '', '');
@@ -131,6 +131,32 @@ export class CategoriaComponent implements OnInit {
     )
   }
 
+  unirMiEquipo(idTorneo) {
+    this._torneoService.unirMiEquipo(this.modelTorneo ,idTorneo, this._usuarioService.obtenerIdentidad()._id,).subscribe(
+      response => {
+        console.table(response);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Bienvenido al torneo',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+      },
+      error => {
+        console.log(<any>error)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
   CrearEquipo() {
     this._EquipoService.agregarEquipo(this.ModelEquipoID, this.idCategoria).subscribe(
       response => {
@@ -159,7 +185,7 @@ export class CategoriaComponent implements OnInit {
     )
   }
 
-  navegarTorneos(idTorneo){
+  navegarTorneos(idTorneo) {
     this._router.navigate(['Torneo', idTorneo])
   }
 }

@@ -49,6 +49,11 @@ export class TorneoService {
     return this._http.get(this.ruta + 'equiposSinTorneo/' + idTorneo, { headers: this.headersVariable })
   }
 
+  unirMiEquipo(torneo: Torneo, idTorneo: String, idUsuario: String): Observable<any> {
+    let params = JSON.stringify(torneo);
+    return this._http.put(this.ruta + "unirMiEquipo/" + idTorneo +'/'+ idUsuario, params,  { headers: this.headersVariable })
+  }
+
   unirEquipos(torneoModel, idTorneo: String) {
     let params = JSON.stringify(torneoModel);
     let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
@@ -58,6 +63,10 @@ export class TorneoService {
   iniciarTorneo(idTorneo: Torneo): Observable<any> {
     let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
     return this._http.put(this.ruta + 'iniciarTorneo/' + idTorneo, { headers: headersToken })
+  }
+
+  campeon(idTorneo: Torneo): Observable<any> {
+    return this._http.get(this.ruta + 'campeon/' + idTorneo, { headers: this.headersVariable })
   }
 
   obtenerToken() {

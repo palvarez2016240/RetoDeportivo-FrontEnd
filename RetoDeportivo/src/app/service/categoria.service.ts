@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GLOBAL } from './global.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Torneo } from '../model/torneo.model';
 
 @Injectable({
   providedIn: 'root'

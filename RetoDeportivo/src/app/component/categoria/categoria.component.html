@@ -60,7 +60,7 @@
         <div class="card-body">
           <h5 class="card-title">{{torn.nombre}}</h5>
           <button type="submit" class="bton4 btn btn-outline-info" (click)='navegarTorneos(torn._id)'>Ver</button>
-          <a href="#" class="btn btn-primary"S *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH')">UNIRME</a>
+          <a class="btn btn-primary" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH')" (click)='unirMiEquipo(torn._id)' (click)='navegarTorneos(torn._id)'>UNIRME</a>
         </div>
       </div>
     </div>

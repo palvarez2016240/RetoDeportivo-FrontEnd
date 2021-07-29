@@ -6,6 +6,9 @@
     </div>
     <div class="col">
       <h1>{{torneoList.nombre}}</h1>
+      <h6 style="text-align: center;" *ngIf=" torneoList.terminado === true ">Torneo Finalizado</h6>
+      <h6 style="text-align: center;" *ngIf=" torneoList.iniciado === true && torneoList.terminado === false">Torneo
+        Iniciado</h6>
     </div>
     <div class="col">
     </div>
@@ -18,8 +21,8 @@
   <div class="row">
     <div class="col">
       <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalTerminar"
-        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' &&
-        torneoList.terminado === false" (click)='terminarTorneo()'>Terminar Torneo</button>
+        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' && torneoList.terminado === false">
+        Terminar Torneo</button>
     </div>
     <div class="col">
     </div>
@@ -37,6 +40,22 @@
 
       <button type="submit" class="bton2 btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar"
         *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row" *ngIf=" torneoList.terminado === true ">
+  <h3>Campeon</h3>
+  <div class="col-lg-6">
+    <div class="member d-flex align-items-start">
+      <div class="pic"><img src="/assets/img/equipos/sin_logo.png" alt="">
+      </div>
+      <div class="member-info">
+        <p>{{campeonList.nombre}}</p>
+        <span class="member-role">Campeon</span>
+      </div>
     </div>
   </div>
 </div>
@@ -81,12 +100,12 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h3>Equipos Integrados</h3>
+        <h3 *ngIf=" torneoList.terminado != true">Equipos Integrados</h3>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf=" torneoList.terminado != true ">
     <div class="col-lg-6" *ngFor="let equiList of equiposList">
       <div class="member d-flex align-items-start">
         <div class="pic"><img src="/assets/img/equipos/sin_logo.png" alt="">
@@ -114,6 +133,26 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-outline-danger" S data-bs-dismiss="modal" (click)='eliminarTorneo()'>Si,
             eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Terminar-->
+  <div class="modal fade" id="ModalTerminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Al terminar el torneo al mejor puntuado sera el campeon y el torneo quedara deshabilitado.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-danger" S data-bs-dismiss="modal"
+            (click)='terminarTorneo()'>Si</button>
         </div>
       </div>
     </div>
@@ -148,7 +187,7 @@
     </div>
   </div>
 
-  <!-- Modal Eliminar-->
+  <!-- Modal Iniciar Tornoe-->
   <div class="modal fade" id="ModalIniciar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

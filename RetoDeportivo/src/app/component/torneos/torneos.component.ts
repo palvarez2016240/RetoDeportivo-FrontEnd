@@ -20,6 +20,7 @@ export class TorneosComponent implements OnInit {
   public torneoList;
   public equiposList;
   public sinTorneo;
+  public campeonList;
 
   constructor(
     public _activatedRoute: ActivatedRoute,
@@ -38,7 +39,8 @@ export class TorneosComponent implements OnInit {
     })
     this.obtenerTorneoId(this.idTorneo);
     this.mostrarEquipos(this.idTorneo);
-    this.equiposSinTorneo(this.idTorneo)
+    this.equiposSinTorneo(this.idTorneo);
+    this.mostarCampeon();
   }
 
   obtenerTorneoId(idTorneo) {
@@ -47,6 +49,15 @@ export class TorneosComponent implements OnInit {
         this.modelTorneo = response.torneoEncontrado;
         this.torneoList = response.torneoEncontrado;
         console.log(response)
+      }
+    )
+  }
+
+  mostarCampeon(){
+    this._torneoService.campeon(this.idTorneo).subscribe(
+      response =>{
+        this.campeonList = response.campeonEncontrado;
+        console.table(response)
       }
     )
   }
