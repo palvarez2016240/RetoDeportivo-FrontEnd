@@ -1,28 +1,27 @@
 <div class="container"  *ngIf="categoriaList">
 
-  <img *ngIf="categoriaList.nombre === 'BALONCESTO'" class="img" src="/assets/img/basket.jpg" alt="">
-  <img *ngIf="categoriaList.nombre === 'VOLLEYBALL'" class="img" src="/assets/img/Voley.png" alt="">
-  <img *ngIf="categoriaList.nombre === 'FUTBALL'" class="img" src="/assets/img/futbol.png" alt="">
+  <img *ngIf="categoriaList.nombre === 'Baloncesto'" class="img" src="/assets/img/basket.jpg" alt="">
+  <img *ngIf="categoriaList.nombre === 'Voleibol'" class="img" src="/assets/img/Voley.png" alt="">
+  <img *ngIf="categoriaList.nombre === 'Futbol'" class="img" src="/assets/img/futbol.png" alt="">
 
-  <br>  <br>  <br>
+
   <div class="row 2">
 
   </div>
-
-  <div class="container contenedorBotones">
-    <div class="row  row-cols-auto">
-      <div class="col">
-        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-          data-bs-target="#AgregarEquipo" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_USER' ">Crear Equipo</button>
-      </div>
-
-    </div>
-  </div>
-
+  <br> <br>
   <div class="row">
 
-    <h2 style="text-align: center;">Equipos</h2>
+    <h1 style="text-align: center;">Equipos de {{categoriaList.nombre}}</h1>
     <hr>
+    <div class="container contenedorBotones">
+      <div class="row  row-cols-auto">
+        <div class="col">
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+            data-bs-target="#AgregarEquipo" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_USER' ">Crear Equipo</button>
+        </div>
+
+      </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-3 g-3">
       <div class="center" *ngFor="let equip of equipoList" >
         <!-- Markup efecto -->
