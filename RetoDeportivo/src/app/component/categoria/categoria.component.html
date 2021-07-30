@@ -1,5 +1,9 @@
 <div class="container"  *ngIf="categoriaList">
-  <h1 class="display-3" >{{categoriaList.nombre}}</h1>
+
+  <img *ngIf="categoriaList.nombre === 'BALONCESTO'" class="img" src="/assets/img/basket.jpg" alt="">
+  <img *ngIf="categoriaList.nombre === 'VOLLEYBALL'" class="img" src="/assets/img/Voley.png" alt="">
+  <img *ngIf="categoriaList.nombre === 'FUTBALL'" class="img" src="/assets/img/futbol.png" alt="">
+
   <br>  <br>  <br>
   <div class="row 2">
 
