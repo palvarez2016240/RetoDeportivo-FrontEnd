@@ -69,6 +69,10 @@ export class TorneoService {
     return this._http.get(this.ruta + 'campeon/' + idTorneo, { headers: this.headersVariable })
   }
 
+  obtenerUser(id:String):Observable<any>{
+    return this._http.get(this.ruta + 'obtenerUsuario/' + id, {headers: this.headersVariable})
+  }
+
   obtenerToken() {
     var token2 = localStorage.getItem('token');
     if (token2 != 'undefined') {

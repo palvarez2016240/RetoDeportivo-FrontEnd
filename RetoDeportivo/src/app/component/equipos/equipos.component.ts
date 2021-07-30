@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   selector: 'app-equipos',
   templateUrl: './equipos.component.html',
   styleUrls: ['./equipos.component.scss'],
-  providers: [UsuarioService,EquipoService,UsuarioService]
+  providers: [UsuarioService,EquipoService,UsuarioService, SubirimagenService]
 })
 export class EquiposComponent implements OnInit {
 
@@ -24,6 +24,8 @@ export class EquiposComponent implements OnInit {
   public UsuarioID
   public url;
   public token;
+  public nuevosDatos;
+
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _equipoService: EquipoService,
@@ -147,7 +149,8 @@ export class EquiposComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-
+        this.obtenerUsuario();
+        window.location.reload();
       },
       error => {
         console.log(<any>error)
@@ -162,19 +165,12 @@ export class EquiposComponent implements OnInit {
     )
   }
 
-  subirImagen(){
-    this._subirService.subirImagen(this.url + 'subirImagen', [], this.imagenASubir, this.token,
-    'imagen').then((resultado: any) => {
-      console.log(resultado);
-      this.identidad.imagen = resultado.usuarioEncontrado.imagen;
-      localStorage.setItem('identidad', JSON.stringify(this.identidad) );
-    })
-
+  obtenerUsuario() {
+    this._usuarioService.obtenerUserID(this._usuarioService.obtenerIdentidad()._id).subscribe(
+      response => {
+        this.nuevosDatos = response.usuarioEncontrado;
+        localStorage.setItem('identidad', JSON.stringify(this.nuevosDatos))
+      }
+    )
   }
-
-  public imagenASubir: Array<File>;
-  inputEvento(fileInput:any){
-    this.imagenASubir = <Array<File>>fileInput.target.files;
-  }
-
 }

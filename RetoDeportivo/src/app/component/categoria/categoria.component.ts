@@ -28,6 +28,8 @@ export class CategoriaComponent implements OnInit {
   public token;
   public modelTorneo: Torneo;
   public torneoList;
+  public nuevosDatos;
+  public tipo;
 
   constructor(
     public _CategoriaService: CategoriaService,
@@ -52,6 +54,7 @@ export class CategoriaComponent implements OnInit {
     this.ObtenerCategoriaID(this.idCategoria)
     this.MostrarEquipoCategoria(this.idCategoria)
     this.obtenerTorneoCategoria(this.idCategoria)
+    this.obtenerIdentidad();
   }
 
   obtenerTorneoCategoria(id) {
@@ -142,6 +145,7 @@ export class CategoriaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+          this.obtenerIdentidad();
         this.navegarTorneos(idTorneo);
       },
       error => {
@@ -170,6 +174,8 @@ export class CategoriaComponent implements OnInit {
         })
         this.ModelEquipoID.nombre = ''
         this.MostrarEquipoCategoria(this.idCategoria)
+        this.obtenerUsuario();
+        window.location.reload();
       },
       error => {
         console.log(<any>error);
@@ -187,5 +193,22 @@ export class CategoriaComponent implements OnInit {
 
   navegarTorneos(idTorneo) {
     this._router.navigate(['Torneo', idTorneo])
+  }
+
+  obtenerUsuario() {
+    this._usuarioService.obtenerUserID(this._usuarioService.obtenerIdentidad()._id).subscribe(
+      response => {
+        this.nuevosDatos = response.usuarioEncontrado;
+        localStorage.setItem('identidad', JSON.stringify(this.nuevosDatos))
+      }
+    )
+  }
+
+  obtenerIdentidad(){
+    this._torneoService.obtenerUser(this._usuarioService.obtenerIdentidad()._id).subscribe(
+      response =>{
+        this.tipo = response.usuarioEncontrado;
+      }
+    )
   }
 }
