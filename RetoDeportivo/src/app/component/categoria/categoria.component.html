@@ -55,22 +55,39 @@
       <div class="card">
         <div class="card-body">
           <img class="y" src="/assets/img/mas.png" alt="">
-         <!--<h5 class="card-title">Crear un torneo</h5>
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"data-bs-target="#AgregarTorneo">CREAR</button>-->
         </div>
       </div>
     </div>
 
-    <!--Mostrar Torneoss-->
+    <div class="col-4">
+      <div class="center" *ngFor="let torn of torneoList" >
+        <!-- Markup efecto -->
+        <figure class="cardd card-with-hover">
+          <!-- Photo by Iga Palacz on Unsplash -->
+          <img src="/assets/img/template.png" alt="">
+          <figcaption class="card-caption">
+            <div class="card-caption-content" >
+              <h2>{{torn.nombre}}</h2>
+              <br><br>
+              <a class="btn btn-primary" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH' && torn.iniciado != true && tipo.equipos.torneo === null)" (click)='unirMiEquipo(torn._id)'>UNIRME</a>
+            </div>
+          </figcaption>
+        </figure>
+        <!-- Markup efecto -->
+      </div>
+    </div>
+
+    <!--Mostrar Torneoss
     <div class="col-4">
       <div class="card" *ngFor="let torn of torneoList">
         <div class="card-body">
           <h5 class="card-title">{{torn.nombre}}</h5>
           <button type="submit" class="bton4 btn btn-outline-info" (click)='navegarTorneos(torn._id)'>Ver</button>
           <a class="btn btn-primary" *ngIf="(_usuarioService.obtenerIdentidad().rol === 'ROL_COACH' && torn.iniciado != true && tipo.equipos.torneo === null)" (click)='unirMiEquipo(torn._id)'>UNIRME</a>
+
         </div>
       </div>
-    </div>
+    </div>-->
 
   </div>
 
