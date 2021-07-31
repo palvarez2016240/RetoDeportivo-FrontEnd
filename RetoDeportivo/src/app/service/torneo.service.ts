@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Torneo } from '../model/torneo.model';
 import { GLOBAL } from './global.service';
+import { jornada } from "../model/jornada.model"
+
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +89,14 @@ export class TorneoService {
     let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
     return this._http.put(this.ruta + 'terminarTorneo/' + idTorneo, { headers: headersToken })
   }
+
+
+//jornada
+
+ingresarJornada(jornada: jornada, idLiga):Observable<any>{
+  let params = JSON.stringify(jornada)
+  let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+  return this._http.post(this.ruta + '/ingresarJornada/' + idLiga , params, {headers: headersToken})
+}
 
 }

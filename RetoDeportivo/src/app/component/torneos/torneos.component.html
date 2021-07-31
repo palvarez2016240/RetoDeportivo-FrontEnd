@@ -35,6 +35,10 @@
         *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Iniciar
         Torneo</button>
 
+        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalMarcador"
+        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Agregar Marcador</button>
+
+
       <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditar"
         *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Editar</button>
 
@@ -69,25 +73,23 @@
     </div>
   </div>
 
-  <div id="wrapper">
+  <div id="wrapper" *ngFor="let equipo of equiposList " >
 
     <table id="keywords" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th><span>Keywords</span></th>
-          <th><span>Impressions</span></th>
-          <th><span>Clicks</span></th>
-          <th><span>CTR</span></th>
-          <th><span>Rank</span></th>
+          <th><span>Nombre</span></th>
+          <th><span>Puntos</span></th>
+          <th><span>Pj</span></th>
+
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="lalign">silly tshirts</td>
-          <td>6,000</td>
-          <td>110</td>
-          <td>1.8%</td>
-          <td>22.2</td>
+          <td class="lalign">{{equipo.nombre}}</td>
+          <td>{{equipo.puntos}}</td>
+          <td>{{equipo.pj}}</td>
+
         </tr>
       </tbody>
     </table>
@@ -207,6 +209,87 @@
     </div>
   </div>
 
+    <!-- Modal AGREGAR Jornada -->
+    <div class="modal fade " id="modalMarcador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Jornada  </label>
+
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jornada" #jornada="ngModel"   [(ngModel)]="jornadaModel.nombre">
+
+                  <option  *ngFor="let jornada of jornadas" value="{{ jornada.i}}"  >{{ jornada.i}}  </option>
+
+                </select>
+
+
+
+              </div>
+
+
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Local</label>
+                <select  class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo" #Equipo="ngModel"   [(ngModel)]="jornadaModel.equipo1">
+
+                  <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
+
+                </select>
+
+                <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+              </div>
+
+
+
+
+
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Puntos </label>
+                <input type="text" class="form-control"  name="gol" #gol="ngModel" [(ngModel)]="jornadaModel.marcador1">
+                <div id="emailHelp" class="form-text">Ingrese los goles del equipo 1</div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Visitante</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo2" #Equipo2="ngModel"   [(ngModel)]="jornadaModel.equipo2">
+
+                  <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
+
+                </select>
+
+                <div id="emailHelp" class="form-text">Elija el nombre del equipo</div>
+              </div>
+
+
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">puntos </label>
+                <input type="text" class="form-control"  name="gol2" #gol2="ngModel" [(ngModel)]="jornadaModel.marcador2">
+                <div id="emailHelp" class="form-text">Ingrese los goles del equipo 2</div>
+              </div>
+
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="ingresarJornada()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!--Modal editar Torneo-->
   <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -229,3 +312,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+
+
+
+
+
+

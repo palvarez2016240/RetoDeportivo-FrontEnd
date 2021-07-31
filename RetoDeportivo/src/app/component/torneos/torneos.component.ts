@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Torneo } from 'src/app/model/torneo.model';
 import { TorneoService } from 'src/app/service/torneo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { jornada } from "src/app/model/jornada.model"
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,6 +23,12 @@ export class TorneosComponent implements OnInit {
   public equiposList;
   public sinTorneo;
   public campeonList;
+  public jornadas= [{i: 0}]
+  public jornadasNumero
+  public jornadaModel: jornada;
+
+
+
 
   constructor(
     public _activatedRoute: ActivatedRoute,
@@ -30,7 +38,9 @@ export class TorneosComponent implements OnInit {
 
   ) {
     this.identidad = this._usuarioService.obtenerIdentidad();
-    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }], false, false, '', '');
+    this.modelTorneo = new Torneo('', '', [{ equipoId: '' }], false, false, '', ''),
+    this.jornadaModel = new jornada('','','',0,0);
+
   }
 
   ngOnInit(): void {
@@ -111,7 +121,10 @@ export class TorneosComponent implements OnInit {
     this._torneoService.equiposTorneo(idTorneo).subscribe(
       response => {
         this.equiposList = response.equiposEncontrado;
+        this.jornadasNumero = response.equiposEncontrado.length;
         console.log(response)
+        this.obtenerNumerosdeJornada()
+
       }
     )
   }
@@ -204,4 +217,53 @@ export class TorneosComponent implements OnInit {
       }
     )
   }
+
+
+
+  ingresarJornada() {
+
+    this._torneoService.ingresarJornada(this.jornadaModel, this.idTorneo).subscribe(
+
+      (response) => {
+        console.log(response);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Marcador Creado ',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.mostrarEquipos(this.idTorneo)
+        window.location.reload()
+      },
+      (error) => {
+
+
+
+        console.log(<any>error);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    );
+  }
+
+
+  obtenerNumerosdeJornada(){
+    console.log(this.jornadasNumero)
+
+    for(var i=1; i < this.jornadasNumero ; i++){
+      this.jornadas[i-1] = {i}
+
+    }
+
+    console.log(this.jornadas)
+
+  }
+
+
 }
