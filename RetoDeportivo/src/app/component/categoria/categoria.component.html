@@ -57,7 +57,9 @@
         <!-- Markup efecto -->
         <figure class="cardd card-with-hover" (click)='navegarTorneos(torn._id)'>
           <!-- Photo by Iga Palacz on Unsplash -->
-          <img src="/assets/img/template.png" alt="">
+          <img *ngIf="categoriaList.nombre === 'Baloncesto'" src="/assets/img/torneos/baloncesto.png" alt="">
+          <img *ngIf="categoriaList.nombre === 'Futbol'" src="/assets/img/torneos/futbol.png" alt="">
+          <img *ngIf="categoriaList.nombre === 'Voleibol'" src="/assets/img/torneos/voley.png" alt="">
           <figcaption class="card-caption">
             <div class="card-caption-content" >
               <h2>{{torn.nombre}}</h2>

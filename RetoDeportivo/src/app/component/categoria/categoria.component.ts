@@ -146,7 +146,7 @@ export class CategoriaComponent implements OnInit {
           timer: 1500
         })
           this.obtenerIdentidad();
-        this.navegarTorneos(idTorneo);
+          this.navegarTorneos(idTorneo);
       },
       error => {
         console.log(<any>error)
