@@ -90,6 +90,9 @@ export class TorneoService {
     return this._http.put(this.ruta + 'terminarTorneo/' + idTorneo, { headers: headersToken })
   }
 
+  buscarCampeon(id:String):Observable<any> {
+    return this._http.get(this.ruta + 'BuscarCampeones/'+id,{ headers: this.headersVariable})
+  }
 
 //jornada
 

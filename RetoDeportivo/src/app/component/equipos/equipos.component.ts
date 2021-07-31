@@ -4,6 +4,7 @@ import { Equipo } from 'src/app/model/equipo.model';
 import { EquipoService } from 'src/app/service/equipo.service';
 import { GLOBAL } from 'src/app/service/global.service';
 import { SubirimagenService } from 'src/app/service/subirimagen.service';
+import { TorneoService } from 'src/app/service/torneo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   selector: 'app-equipos',
   templateUrl: './equipos.component.html',
   styleUrls: ['./equipos.component.scss'],
-  providers: [UsuarioService,EquipoService,UsuarioService, SubirimagenService]
+  providers: [UsuarioService,EquipoService,UsuarioService, SubirimagenService,TorneoService]
 })
 export class EquiposComponent implements OnInit {
 
@@ -25,15 +26,18 @@ export class EquiposComponent implements OnInit {
   public url;
   public token;
   public nuevosDatos;
+  public torneoW
+  public wins
 
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _equipoService: EquipoService,
     public _usuarioService:UsuarioService,
-    public _subirService:SubirimagenService
+    public _subirService:SubirimagenService,
+    public _torneoService: TorneoService
   ) {
     this.identidad = this._usuarioService.obtenerIdentidad()
-    this.ModelEquipoID = new Equipo('','','',0,0,[{torneo:''}],[{usuario:''}],'')
+    this.ModelEquipoID = new Equipo('','','',0,0,[{torneo:'',nombreTorneo:'',imagenTorneo:''}],[{usuario:''}],'')
     this.token = _usuarioService.obtenerToken()
     this.url = GLOBAL.url
   }
@@ -46,6 +50,8 @@ export class EquiposComponent implements OnInit {
     this.mostarEquipoID(this.idEquipo)
     this.ObtenerTeam(this.idEquipo)
     this.obtenerUsuarios()
+    this.TorneosGanados()
+
   }
 
   mostarEquipoID(id){
@@ -54,7 +60,10 @@ export class EquiposComponent implements OnInit {
 
         this.ModelEquipoID = response.EquipoEncontrado
         this.equipoList = response.EquipoEncontrado
-        console.table(this.equipoList)
+        this.wins = response.EquipoEncontrado.torneosG
+
+        console.table( this.equipoList.torneosG)
+
       },
       err =>{
 
@@ -170,6 +179,17 @@ export class EquiposComponent implements OnInit {
       response => {
         this.nuevosDatos = response.usuarioEncontrado;
         localStorage.setItem('identidad', JSON.stringify(this.nuevosDatos))
+      }
+    )
+  }
+
+  TorneosGanados(){
+    this._torneoService.buscarCampeon(this.idEquipo).subscribe(
+      response =>{
+
+        this.torneoW = response.EquipoEncontrado
+        console.table(this.torneoW)
+
       }
     )
   }
