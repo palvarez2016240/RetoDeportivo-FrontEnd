@@ -214,69 +214,79 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+            <h5 class="modal-title" id="exampleModalLabel">INGRESAR RESULTADOS</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
 
+
+            <div class="container">
+              <div class="row">
+                <div class="col-2">
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Local</label>
+                    <select  class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo" #Equipo="ngModel"   [(ngModel)]="jornadaModel.equipo1">
+
+                      <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
+
+                    </select>
+
+                    <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+                  </div>
+
+
+
+
+
+
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Puntos </label>
+                    <input type="text" class="form-control"  name="gol" #gol="ngModel" [(ngModel)]="jornadaModel.marcador1">
+                    <div id="emailHelp" class="form-text">Ingrese los goles del equipo 1</div>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <div class="mb-1">
+                    <label for="exampleInputPassword1" class="form-label">Jornada  </label>
+
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jornada" #jornada="ngModel"   [(ngModel)]="jornadaModel.nombre">
+
+                      <option  *ngFor="let jornada of jornadas" value="{{ jornada.i}}"  >{{ jornada.i}}  </option>
+
+                    </select>
+
+
+
+                  </div>                </div>
+                <div class="col-2">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Visitante</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo2" #Equipo2="ngModel"   [(ngModel)]="jornadaModel.equipo2">
+
+                      <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
+
+                    </select>
+
+                    <div id="emailHelp" class="form-text">Elija el nombre del equipo</div>
+                  </div>
+
+
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">puntos </label>
+                    <input type="text" class="form-control"  name="gol2" #gol2="ngModel" [(ngModel)]="jornadaModel.marcador2">
+                    <div id="emailHelp" class="form-text">Ingrese los goles del equipo 2</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
             <form>
 
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Jornada  </label>
 
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jornada" #jornada="ngModel"   [(ngModel)]="jornadaModel.nombre">
-
-                  <option  *ngFor="let jornada of jornadas" value="{{ jornada.i}}"  >{{ jornada.i}}  </option>
-
-                </select>
-
-
-
-              </div>
-
-
-
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Local</label>
-                <select  class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo" #Equipo="ngModel"   [(ngModel)]="jornadaModel.equipo1">
-
-                  <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
-
-                </select>
-
-                <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
-              </div>
-
-
-
-
-
-
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Puntos </label>
-                <input type="text" class="form-control"  name="gol" #gol="ngModel" [(ngModel)]="jornadaModel.marcador1">
-                <div id="emailHelp" class="form-text">Ingrese los goles del equipo 1</div>
-              </div>
-
-
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Visitante</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo2" #Equipo2="ngModel"   [(ngModel)]="jornadaModel.equipo2">
-
-                  <option  *ngFor="let equipo of equiposList " value={{equipo._id}} >{{ equipo.nombre}}  </option>
-
-                </select>
-
-                <div id="emailHelp" class="form-text">Elija el nombre del equipo</div>
-              </div>
-
-
-
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">puntos </label>
-                <input type="text" class="form-control"  name="gol2" #gol2="ngModel" [(ngModel)]="jornadaModel.marcador2">
-                <div id="emailHelp" class="form-text">Ingrese los goles del equipo 2</div>
-              </div>
 
 
             </form>
