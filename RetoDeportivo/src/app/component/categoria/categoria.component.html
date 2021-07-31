@@ -51,18 +51,11 @@
     <h1 style="text-align: center" class="tit" *ngIf="torneoList != null || _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' ">Torneos de {{categoriaList.nombre}}</h1>
     <hr>
     <br>
-    <div class="col-4" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' " data-bs-toggle="modal"data-bs-target="#AgregarTorneo">
-      <div class="card">
-        <div class="card-body">
-          <img class="y" src="/assets/img/mas.png" alt="">
-        </div>
-      </div>
-    </div>
 
-    <div class="col-4">
+    <div class="row row-cols-1 row-cols-md-3 g-3">
       <div class="center" *ngFor="let torn of torneoList" >
         <!-- Markup efecto -->
-        <figure class="cardd card-with-hover">
+        <figure class="cardd card-with-hover" (click)='navegarTorneos(torn._id)'>
           <!-- Photo by Iga Palacz on Unsplash -->
           <img src="/assets/img/template.png" alt="">
           <figcaption class="card-caption">
@@ -74,6 +67,14 @@
           </figcaption>
         </figure>
         <!-- Markup efecto -->
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' " data-bs-toggle="modal"data-bs-target="#AgregarTorneo">
+      <div class="card">
+        <div class="card-body">
+          <img class="y" src="/assets/img/mas.png" alt="">
+        </div>
       </div>
     </div>
 
