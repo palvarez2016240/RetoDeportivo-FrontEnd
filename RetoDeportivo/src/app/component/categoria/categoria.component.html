@@ -46,16 +46,17 @@
         <!-- Markup efecto -->
       </div>
     </div>
-
     <!--Torneos-->
     <!--Crear un torneo-->
     <h1 style="text-align: center" class="tit" *ngIf="torneoList != null || _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' ">Torneos de {{categoriaList.nombre}}</h1>
     <hr>
-    <div class="col-4" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' ">
+    <br>
+    <div class="col-4" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' " data-bs-toggle="modal"data-bs-target="#AgregarTorneo">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Crear un torneo</h5>
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"data-bs-target="#AgregarTorneo">CREAR</button>
+          <img class="y" src="/assets/img/mas.png" alt="">
+         <!--<h5 class="card-title">Crear un torneo</h5>
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"data-bs-target="#AgregarTorneo">CREAR</button>-->
         </div>
       </div>
     </div>
