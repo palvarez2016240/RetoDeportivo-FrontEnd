@@ -73,7 +73,7 @@ body {
   padding: 15px;
   background-color: #ffffff48;
 }
-
+a
 .card .course-description h3 {
   font-size: 24px;
   color: white;
@@ -219,3 +219,25 @@ body {
   margin-left: -74px;
 }
 
+.btn{
+  background: linear-gradient(45deg, #FF4D00, #E60E0E);
+  color:  white;
+}
+
+.btn:hover{
+  color: white;
+  border-radius: 10px;
+}
+
+h1{
+  color: #2A2D34;
+}
+
+.atras{
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  margin-left: 1120px;
+  margin-top: 150px;
+  position: fixed;
+}
