@@ -16,6 +16,7 @@ import { ListaUsuariosComponent } from './component/lista-usuarios/lista-usuario
 import { CategoriaComponent } from './component/categoria/categoria.component';
 import { EquiposComponent } from './component/equipos/equipos.component';
 import { TorneosComponent } from './component/torneos/torneos.component';
+import { AboutComponent } from './component/about/about.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TorneosComponent } from './component/torneos/torneos.component';
     ListaUsuariosComponent,
     CategoriaComponent,
     EquiposComponent,
-    TorneosComponent
+    TorneosComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

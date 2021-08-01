@@ -8,6 +8,7 @@ import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { CategoriaComponent } from './component/categoria/categoria.component';
 import { EquiposComponent } from './component/equipos/equipos.component';
 import { TorneosComponent } from './component/torneos/torneos.component';
+import { AboutComponent } from './component/about/about.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "Equipos/:idEquipo", component:EquiposComponent},
   {path: "Torneo/:idTorneo", component:TorneosComponent},
   {path: "Usuarios", component:UsuariosComponent},
+  {path: "Abouts", component:AboutComponent},
   {path:'**',component:LoginComponent},
 
 
