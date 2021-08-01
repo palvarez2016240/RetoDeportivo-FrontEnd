@@ -9,6 +9,7 @@
 <br>
 <br>
 <br>
+<a class="back btn-primary" href="javascript:window.history.go(-1);"><i class="bi bi-arrow-left"></i></a>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -29,28 +30,28 @@
 <div class="container">
   <div class="row">
     <div class="col">
-     <img  *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" data-bs-toggle="modal"
+     <img class="opciones" *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" data-bs-toggle="modal"
       data-bs-target="#modalEditar" src="/assets/img/torneos/editar2.png">
 
-      <img data-bs-toggle="modal" data-bs-target="#ModalTerminar" *ngIf=" torneoList.iniciado === true &&
+      <img class="opciones" data-bs-toggle="modal" data-bs-target="#ModalTerminar" *ngIf=" torneoList.iniciado === true &&
       _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' && torneoList.terminado === false" src="/assets/img/torneos/terminar.png">
     </div>
 
     <div class="col">
-      <img data-bs-toggle="modal" data-bs-target="#ModalAgregar" *ngIf=" torneoList.iniciado === false &&
+      <img class="opciones" data-bs-toggle="modal" data-bs-target="#ModalAgregar" *ngIf=" torneoList.iniciado === false &&
       _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/agregar.png">
 
-      <img data-bs-toggle="modal" data-bs-target="#modalMarcador" *ngIf=" torneoList.iniciado === true &&
-      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/vs.png">
+      <img class="opciones" data-bs-toggle="modal" data-bs-target="#modalMarcador" *ngIf=" torneoList.iniciado === true &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'  && torneoList.terminado === false" src="/assets/img/torneos/vs.png">
     </div>
 
     <div class="col">
-      <img data-bs-toggle="modal" data-bs-target="#ModalIniciar" *ngIf=" torneoList.iniciado === false &&
+      <img class="opciones" data-bs-toggle="modal" data-bs-target="#ModalIniciar" *ngIf=" torneoList.iniciado === false &&
       _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/iniciar2.png">
     </div>
 
     <div class="col">
-      <img data-bs-toggle="modal" data-bs-target="#ModalEliminar" *ngIf=" torneoList.iniciado === false &&
+      <img class="opciones" data-bs-toggle="modal" data-bs-target="#ModalEliminar" *ngIf=" torneoList.iniciado === false &&
       _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/eliminar.png">
     </div>
   </div>
@@ -59,29 +60,32 @@
 <br>
 
 <div class="row" *ngIf=" torneoList.terminado === true ">
-  <h3>Campeón</h3>
+  <div class="col">
+  </div>
   <div class="col-lg-6">
     <div class="member d-flex align-items-start">
       <div class="pic"><img src="/assets/img/equipos/sin_logo.png" alt="">
       </div>
       <div class="member-info">
-        <p>{{campeonList.nombre}}</p>
-        <span class="member-role">Campeón</span>
+        <h2 class="member-name">{{campeonList.nombre}}</h2>
       </div>
+      <img class="cam" src="/assets/img/torneos/campeon.png">
     </div>
+  </div>
+  <div class="col">
   </div>
 </div>
 
 <br>
 
 <div class="container">
-  <div class="row">
+  <div class="row"  *ngIf="torneoList.terminado === false && equiposList != null">
     <div class="col">
       <h3>Tabla de posiciones</h3>
     </div>
   </div>
 
-  <div id="wrapper"  >
+  <div id="wrapper" *ngIf="torneoList.terminado === false && equiposList != null">
 
     <table id="keywords" cellspacing="0" cellpadding="0" >
       <thead>
@@ -110,12 +114,12 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h3 *ngIf=" torneoList.terminado != true">Equipos Integrados</h3>
+        <h3 *ngIf=" torneoList.terminado != true && equiposList != null">Equipos Integrados</h3>
       </div>
     </div>
   </div>
 
-  <div class="row" *ngIf=" torneoList.terminado != true ">
+  <div class="row" *ngIf=" torneoList.terminado != true && equiposList != null">
     <div class="col-lg-6" *ngFor="let equiList of equiposList">
       <div class="member d-flex align-items-start">
         <div class="pic"><img src="/assets/img/equipos/sin_logo.png" alt="">
