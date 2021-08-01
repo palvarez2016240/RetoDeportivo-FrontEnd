@@ -146,3 +146,13 @@ img { border: 0; max-width: 100%; }
   width: 1266px;
   float: left;
 }
+
+.btn{
+  background: linear-gradient(45deg, #FF4D00, #E60E0E);
+  color:  white;
+}
+
+.btn:hover{
+  color: white;
+  border-radius: 10px;
+}

@@ -29,30 +29,29 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalTerminar"
-        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' && torneoList.terminado === false">
-        Terminar Torneo</button>
+     <img  *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" data-bs-toggle="modal"
+      data-bs-target="#modalEditar" src="/assets/img/torneos/editar2.png">
+
+      <img data-bs-toggle="modal" data-bs-target="#ModalTerminar" *ngIf=" torneoList.iniciado === true &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP' && torneoList.terminado === false" src="/assets/img/torneos/terminar.png">
     </div>
+
     <div class="col">
+      <img data-bs-toggle="modal" data-bs-target="#ModalAgregar" *ngIf=" torneoList.iniciado === false &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/agregar.png">
+
+      <img data-bs-toggle="modal" data-bs-target="#modalMarcador" *ngIf=" torneoList.iniciado === true &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/vs.png">
     </div>
+
     <div class="col">
-      <button type="submit" class="bton2 btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAgregar"
-        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Agregar
-        Equipos</button>
+      <img data-bs-toggle="modal" data-bs-target="#ModalIniciar" *ngIf=" torneoList.iniciado === false &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/iniciar2.png">
+    </div>
 
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalIniciar"
-        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Iniciar
-        Torneo</button>
-
-        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalMarcador"
-        *ngIf=" torneoList.iniciado === true && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Agregar Marcador</button>
-
-
-      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditar"
-        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Editar</button>
-
-      <button type="submit" class="bton2 btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminar"
-        *ngIf=" torneoList.iniciado === false && _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'">Eliminar</button>
+    <div class="col">
+      <img data-bs-toggle="modal" data-bs-target="#ModalEliminar" *ngIf=" torneoList.iniciado === false &&
+      _usuarioService.obtenerIdentidad().rol === 'ROL_ADMINAPP'" src="/assets/img/torneos/eliminar.png">
     </div>
   </div>
 </div>
