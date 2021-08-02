@@ -55,6 +55,7 @@ export class CategoriaComponent implements OnInit {
     this.MostrarEquipoCategoria(this.idCategoria)
     this.obtenerTorneoCategoria(this.idCategoria)
     this.obtenerIdentidad();
+    this.obtenerUsuario();
   }
 
   obtenerTorneoCategoria(id) {
