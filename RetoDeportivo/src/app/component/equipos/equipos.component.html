@@ -31,7 +31,9 @@
       <div class="col">
         <div class="card" style="width: 18rem;">
           <h6 style="text-align: center" class="card-text">Torneo</h6>
-          <img src="assets/img/equipos/sin_logo.png" class="card-img-top" alt="...">
+          <img *ngIf=" equipoList.categoria.nombre === 'Baloncesto' " src="assets/img/torneos/baloncesto.png" class="card-img-top" alt="...">
+          <img *ngIf=" equipoList.categoria.nombre === 'Futbol' " src="assets/img/torneos/futbol.png" class="card-img-top" alt="...">
+          <img *ngIf=" equipoList.categoria.nombre === 'Voleibol' " src="assets/img/torneos/voley.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h4 style="text-align: center" class="card-text">{{equipoList.torneo.nombre}}</h4>
           </div>
