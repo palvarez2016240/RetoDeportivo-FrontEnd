@@ -23,7 +23,7 @@ export class TorneosComponent implements OnInit {
   public equiposList;
   public sinTorneo;
   public campeonList;
-  public jornadas= [{i: 0}]
+  public jornadas = [{ i: 0 }]
   public jornadasNumero
   public jornadaModel: jornada;
 
@@ -39,7 +39,7 @@ export class TorneosComponent implements OnInit {
   ) {
     this.identidad = this._usuarioService.obtenerIdentidad();
     this.modelTorneo = new Torneo('', '', [{ equipoId: '' }], false, false, '', ''),
-    this.jornadaModel = new jornada('','','',0,0);
+      this.jornadaModel = new jornada('', '', '', 0, 0);
 
   }
 
@@ -63,9 +63,9 @@ export class TorneosComponent implements OnInit {
     )
   }
 
-  mostarCampeon(){
+  mostarCampeon() {
     this._torneoService.campeon(this.idTorneo).subscribe(
-      response =>{
+      response => {
         this.campeonList = response.campeonEncontrado;
         console.table(response)
       }
@@ -253,11 +253,11 @@ export class TorneosComponent implements OnInit {
   }
 
 
-  obtenerNumerosdeJornada(){
+  obtenerNumerosdeJornada() {
     console.log(this.jornadasNumero)
 
-    for(var i=1; i < this.jornadasNumero ; i++){
-      this.jornadas[i-1] = {i}
+    for (var i = 1; i < this.jornadasNumero; i++) {
+      this.jornadas[i - 1] = { i }
 
     }
 

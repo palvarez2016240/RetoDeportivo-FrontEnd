@@ -59,7 +59,7 @@ export class TorneoService {
   unirEquipos(torneoModel, idTorneo: String) {
     let params = JSON.stringify(torneoModel);
     let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
-    return this._http.post(this.ruta + 'unirEquipos/' + idTorneo, params, { headers: headersToken })
+    return this._http.put(this.ruta + 'unirEquipos/' + idTorneo, params, { headers: headersToken })
   }
 
   iniciarTorneo(idTorneo: Torneo): Observable<any> {
