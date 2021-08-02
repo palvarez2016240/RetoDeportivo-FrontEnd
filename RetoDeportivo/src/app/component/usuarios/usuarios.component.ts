@@ -3,22 +3,28 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario.model';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
+import { GLOBAL } from 'src/app/service/global.service';
+import { EquipoService } from 'src/app/service/equipo.service';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss'],
-  providers: [UsuarioService]
+  providers: [UsuarioService, EquipoService]
 })
 export class UsuariosComponent implements OnInit {
   usuariosList;
   userActualizado;
   usuarioIDModel: Usuario;
   usuarios;
+  equipo;
+  public url;
   public identidad;
-  constructor(public _usuarioService: UsuarioService, private _router: Router) {
+  constructor(public _usuarioService: UsuarioService, private _router: Router, public _equipoService: EquipoService) {
     this.usuarioIDModel = new Usuario('', '', '', '',0, '', '', '', '');
+    this.url = GLOBAL.url
   }
+  
 
   ngOnInit(): void {
     this.todosUsuarios();
@@ -49,13 +55,20 @@ export class UsuariosComponent implements OnInit {
       (response) => {
         console.log(response);
         this.  ngOnInit()
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuario eliminado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },
       (error) => {
         console.log(error);
         Swal.fire({
           position: 'top-end',
           icon: 'error',
-          title: 'Usuario Eliminado',
+          title: error.error.mensaje,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -71,5 +84,18 @@ export class UsuariosComponent implements OnInit {
       }
     )
   }
+
+  todosEquipos(){
+    this._equipoService.obtenerEquipo().subscribe(
+      response => {
+        this.equipo = response.EquipoEncontrado;
+        console.table(this.equipo);
+      }
+    )
+  }
+
+
+
+
 
 }

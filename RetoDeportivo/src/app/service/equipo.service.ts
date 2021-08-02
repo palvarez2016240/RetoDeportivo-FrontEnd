@@ -30,6 +30,10 @@ export class EquipoService {
     return this._http.get(this.ruta + "MostrarEquiposID/"+ id, {headers: headersToken})
   }
 
+  obtenerEquipo():Observable<any>{
+    return this._http.get(this.ruta + "MostrarEquipos/",{headers: this.headersVariable})
+  }
+
   ObtenerTeam(id:String):Observable<any>{
     let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
     return this._http.get(this.ruta + "ObtenerTeam/"+ id, {headers: headersToken})
