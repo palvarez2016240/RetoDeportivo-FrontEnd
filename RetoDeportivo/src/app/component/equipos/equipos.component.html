@@ -87,18 +87,18 @@
 
     <div class="row">
 
-      <div class="col-lg-6" *ngFor="let tm of team">
+      <div class="col-lg-6" *ngFor="let tm of users">
         <div class="member d-flex align-items-start">
           <div class="pic"><img src="https://image.flaticon.com/icons/png/512/56/56745.png" class="img-fluid" alt="">
           </div>
           <div class="member-info">
-            <p class="member-heading">{{tm.nombres}}</p>
+            <p class="member-heading">{{tm.usuario.nombres}}</p>
             <span>{{equipoList.nombre}}</span>
             <p class="member-para">{{equipoList.categoria.nombre}}</p>
-            <p class="member-para" *ngIf="tm.rol === 'ROL_COACH'" >COACH</p>
+            <p class="member-para" *ngIf="tm.usuario.rol === 'ROL_COACH'" >COACH</p>
             <div class="social">
-              <a data-bs-toggle="modal" data-bs-target="#Eliminar" (click)="obtenerUsuarioID(tm._id)"
-                *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_COACH' && _usuarioService.obtenerIdentidad().equipos === equipoList._id && tm.rol != 'ROL_COACH'"><i
+              <a data-bs-toggle="modal"  (click)="EliminarMiembro(tm.usuario._id)"
+                *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_COACH' && _usuarioService.obtenerIdentidad().equipos === equipoList._id && tm.usuario.rol != 'ROL_COACH'"><i
                   class="bi bi-trash"></i></a>
             </div>
           </div>
@@ -165,25 +165,6 @@
   </div>
 </div>
 
-<!-- Modal Eliminar miembro -->
-<div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Equipo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Esta seguro de eliminarlo del equipo?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
-          (click)="EliminarMiembro(equipoList._id)">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Modal Agregar miembro -->

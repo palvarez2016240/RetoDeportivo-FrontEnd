@@ -28,7 +28,8 @@ export class EquiposComponent implements OnInit {
   public nuevosDatos;
   public torneoW
   public wins
-
+  public users
+  public modelusers
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _equipoService: EquipoService,
@@ -61,8 +62,9 @@ export class EquiposComponent implements OnInit {
         this.ModelEquipoID = response.EquipoEncontrado
         this.equipoList = response.EquipoEncontrado
         this.wins = response.EquipoEncontrado.torneosG
-
-        console.table( this.equipoList.torneosG)
+        this.users = response.EquipoEncontrado.integrantes
+        console.table(this.users)
+        console.table(response)
 
       },
       err =>{
@@ -75,7 +77,7 @@ export class EquiposComponent implements OnInit {
     this._equipoService.ObtenerTeam(id).subscribe(
       response =>{
         this.team = response.TeamEcontrado
-        console.table(this.team)
+        //console.table(this.team)
       },
       err =>{
 
@@ -120,7 +122,7 @@ export class EquiposComponent implements OnInit {
     this._equipoService.obtenerUsuairo().subscribe(
       response =>{
         this.usuariosST = response.UsuarioEncontrado
-        console.table(this.usuariosST)
+       // console.table(this.usuariosST)
       }
     )
   }
@@ -130,7 +132,8 @@ export class EquiposComponent implements OnInit {
       response =>{
         console.table(response)
         this.obtenerUsuarios()
-        this.ObtenerTeam(this.idEquipo)
+        this.mostarEquipoID(this.idEquipo)
+
       }
     )
   }
